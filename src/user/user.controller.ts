@@ -17,25 +17,23 @@ export class UserController {
     }
 
     @Get(':id')
-    async read(@Param() param) {
-        return {user:{}, param}
+    async read(@Param('id', ParseIntPipe) id:  number) {
+        return {user:{}, id}
     }
 
     @Put(':id')
-    async update(@Body() body: UpdateUserDto, @Param() params) {
+    async update(@Body() {name, email, password}: UpdateUserDto, @Param('id', ParseIntPipe) id:  number) {
         return {
             method: 'Put',
-            body,
-            params
+            name, email, password,
         }
     }
 
     @Patch(':id')
-    async patch(@Body() body: PatchUserDto, @Param() params) {
+    async patch(@Body() {name, email, password}: PatchUserDto, @Param('id', ParseIntPipe) id: number) {
         return {
             method: 'patch',
-            body,
-            params
+            name, email, password,
         }
     }
 
