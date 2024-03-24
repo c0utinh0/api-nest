@@ -3,6 +3,7 @@ import { PrismaService } from "src/prisma/prisma.service";
 import { CreateUserDto } from "./dto/create.user.dto";
 import { UpdateUserDto } from "./dto/update.user.dto";
 import { PatchUserDto } from "./dto/patch.user.dto";
+import { timeStamp } from "console";
 
 @Injectable()
 export class UserService {
@@ -36,7 +37,10 @@ export class UserService {
             where: {
                 id
             },
-            data
+            data: {
+                ...data,
+                updatedAt: new Date()
+            }
         });
     }
 
@@ -45,7 +49,10 @@ export class UserService {
             where: {
                 id
             },
-            data
+            data: {
+                ...data,
+                updatedAt: new Date()
+            }
         });
     }
 }
